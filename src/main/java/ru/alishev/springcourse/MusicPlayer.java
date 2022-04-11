@@ -1,12 +1,14 @@
 package ru.alishev.springcourse;
 
-import java.util.List;
-
 public class MusicPlayer {
 
     private String name;
     private int volume;
-    private List<Music> musicList;
+    private Music music;
+
+    public MusicPlayer(Music music) {
+        this.music = music;
+    }
 
     public MusicPlayer() {
     }
@@ -27,14 +29,11 @@ public class MusicPlayer {
         this.volume = volume;
     }
 
-    public void setMusicList(List<Music> musicList) {
-        this.musicList = musicList;
+    public void setMusic(Music music) {
+        this.music = music;
     }
 
     public void playMusic() {
-        for (Music m : musicList
-        ) {
-            System.out.println("Playing: " + m.getSong());
-        }
+        System.out.println("Playing: " + music.getSong());
     }
 }
