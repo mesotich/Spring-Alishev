@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class RockMusic implements Music {
+public class PopMusic implements Music {
 
     @Override
     public List<String> getSong() {
-        return new ArrayList<>(Arrays.asList("Рок1", "Рок2", "Рок3"));
+        return new ArrayList<>(Arrays.asList("Поп1", "Поп2", "Поп3"));
     }
 }

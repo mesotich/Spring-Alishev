@@ -1,33 +1,26 @@
 package ru.alishev.springcourse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
+import java.util.Map;
 import java.util.Random;
 
-@Component
 public class MusicPlayer {
 
     @Value("${musicPlayer.volume}")
     private int volume;
     @Value("${musicPlayer.name}")
     private String name;
-    private Music music1;
-    private Music music2;
+    private Map<Genre, Music> musicList;
 
-    @Autowired
-    public MusicPlayer(@Qualifier("rockMusic") Music music1,
-                       @Qualifier("classicalMusic") Music music2) {
-        this.music1 = music1;
-        this.music2 = music2;
+    public MusicPlayer(Map<Genre, Music> musicList) {
+        this.musicList = musicList;
     }
 
-    public String playMusic(Genre genre) {
+    public String playMusic() {
         Random random = new Random();
-        Music music = genre.equals(Genre.CLASSICAL) ? music2 : music1;
-        return music.getSong().get(random.nextInt(3));
+        Music music = musicList.get(Genre.values()[random.nextInt(3)]);
+        return music != null ? music.getSong().get(random.nextInt(3)) : null;
     }
 
     public String getName() {
